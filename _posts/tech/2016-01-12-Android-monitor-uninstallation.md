@@ -177,11 +177,16 @@ keywords: 卸载,进程,jni
 
 
 相关问题：
+
 [Why does getRuntime().exec(“/system/bin/am”) always return “Operation not permitted”?][3]
+
 [Android应用如何监听自己是否被卸载及卸载反馈功能的实现1][4]，
+
 [Android应用如何监听自己是否被卸载及卸载反馈功能的实现2][5]，
+
 [Android应用如何监听自己是否被卸载及卸载反馈功能的实现3][6],
-[Android不被kill的Service与卸载之后跳转出反馈页面][7],
+
+[Android不被kill的Service与卸载之后跳转出反馈页面][7]
 
 
  
