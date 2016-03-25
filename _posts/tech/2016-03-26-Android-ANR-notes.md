@@ -3,7 +3,6 @@ layout: post
 title: ANR学习笔记
 category: 技术
 tags: ANR
-description: ANR学习笔记
 ---
 
 
@@ -12,7 +11,7 @@ Android系统为了防止某些应用会在一段时间内反应迟钝，因而�
 ### ANR触发条件
 - 5秒内未响应input event,包括key和touch两种事件
 - 10秒内未执行完的[`BroadcastReceiver`][1]
-- 20秒内未执行完的[`Service`](http://developer.android.com/reference/android/app/Service.html),注意：Service也是执行在主线程中。
+- 20秒内未执行完的`Service`,注意：Service也是执行在主线程中。
 
 
 ### 需要注意ANR的场景
@@ -66,7 +65,7 @@ IO，网络，数据库，复杂计算（如bitmap压缩等）
 ### 参考文献：
 [ANR官方文档][20]
 
-[ANR触发原理（what triggers ANR?ANR简介][21]
+[ANR触发原理（what triggers ANR?][21]
 
 [ANR源码流程）][22]
 
