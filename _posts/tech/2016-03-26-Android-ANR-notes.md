@@ -1,10 +1,12 @@
 ---
 layout: post
-title: Android ANR 学习笔记
+title: ANR学习笔记
 category: 技术
 tags: ANR
-description: Android ANR 学习笔记
+description: ANR学习笔记
 ---
+
+
 ### ANR
 Android系统为了防止某些应用会在一段时间内反应迟钝，因而弹出的ANR对话框。
 ### ANR触发条件
