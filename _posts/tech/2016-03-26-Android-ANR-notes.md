@@ -1,18 +1,23 @@
 ---
 layout: post
-title: Android ANR 学习笔记
+title: ANR学习笔记
 category: 技术
 tags: ANR
-description: Android ANR 学习笔记
+description: ANR学习笔记
 ---
+
+
 ### ANR
 Android系统为了防止某些应用会在一段时间内反应迟钝，因而弹出的ANR对话框。
 ### ANR触发条件
 - 5秒内未响应input event,包括key和touch两种事件
 - 10秒内未执行完的[`BroadcastReceiver`][1]
 - 20秒内未执行完的[`Service`](http://developer.android.com/reference/android/app/Service.html),注意：Service也是执行在主线程中。
+
+
 ### 需要注意ANR的场景
 IO，网络，数据库，复杂计算（如bitmap压缩等）
+
 ### 避免ANR的方法：在UI线程外的worker thread做耗时操作。
 - 简单任务->[`AsyncTask`][2]
 - 复杂任务->[`HandlerThread`][3]或[`Thread`][4]，一定要设置线程优先级为[`THREAD_PRIORITY_BACKGROUND`][5]，调用的是[`Process.setThreadPriority()`][6]，不然该线程的优先级为默认，和UI线程相同，仍然会影响App速度。

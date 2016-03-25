@@ -8,7 +8,8 @@ description: ADB命令大全
 
 
 查看ADB帮助`adb help`
-### **设备连接**
+
+### 设备连接
 1. 等待设备连接，在模拟器/设备连接之前把命令暂存在adb的命令器中
 
         adb wait-for-device 
@@ -28,7 +29,8 @@ description: ADB命令大全
 
 
         Ctrl-C
-### **设备管理**
+
+### 设备管理
 3. 重启设备
 
         adb reboot
@@ -38,13 +40,15 @@ description: ADB命令大全
 5. 重启到恢复模式，recovery
     
         adb reboot recovery
-###**发送命令到设备**
+
+### 发送命令到设备
 
         adb [-d|-e|-s <serialNumber>] <command>
         -d 发送命令给usb连接的设备
         -e 发送命令到模拟器设备
         -s <serialNumber> 发送命令到指定设备
-### **APP管理**
+
+### APP管理
 1. 获取apk的packagename 和 classname
 
         aapt d badging <apkfile>
@@ -73,8 +77,9 @@ description: ADB命令大全
         adb shell am start -n <package_name>/.<activity_class_name>
 1. 杀死Activity
 
-        adb shell am force-stop <package name>        
-### **查看内存占用**        
+        adb shell am force-stop <package name>    
+    
+### 查看内存占用       
 4. 查看设备cpu和内存占用情况
 
         adb shell top
@@ -109,7 +114,8 @@ description: ADB命令大全
 2. 查看后台service列表
 
         adb shell service list
-### **Log相关**
+
+### Log相关
 6. 查看log
     
         adb logcat
@@ -123,8 +129,9 @@ description: ADB命令大全
         adb bugreport
 3. monkey测试,500次操作
 
-        adb shell monkey -v -p <package name> 500        
-### **文件操作相关**
+        adb shell monkey -v -p <package name> 500 
+       
+### 文件操作相关
 2. 挂载为可读写
 
         adb remount
@@ -163,7 +170,8 @@ description: ADB命令大全
 
         adb shell mkdir <dir>
         adb shell mkdir path/<dir>
-### **查看状态信息**
+
+### 查看状态信息
 3. 查看文件内容
 
         adb shell cat <file>
@@ -188,7 +196,7 @@ description: ADB命令大全
 2. 获取序列号
 
         adb get-serialno
-### **dumpsys**
+### dumpsys
     adb shell dumpsys   //获取系统状态
     adb shell dumpsys | grep "DUMP OF SERVICE"  //获取与关键字相关的状态
     adb shell dumpsys activity  //获取所有关于四大组件的信息（包括布局）,这里及之后的Activity不是指界面Activity，而是泛指Android里的四大组件。
