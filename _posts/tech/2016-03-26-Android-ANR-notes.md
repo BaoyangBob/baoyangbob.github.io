@@ -24,6 +24,8 @@ IO，网络，数据库，复杂计算（如bitmap压缩等）
 - 不要使用`Thread.wait()`或`Thread.sleep()`阻塞主线程
 - 响应intent broadcast并进行耗时操作->使用[`IntentService`][7]而不是BroadcastReceiver
 - 使用[`StrictMode`][8]发现问题。
+
+
 ### 改善响应速度的方法
  - [ProgressBar][9]
  - worker thread中计算
