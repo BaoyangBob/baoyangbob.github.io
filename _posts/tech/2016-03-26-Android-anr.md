@@ -66,9 +66,9 @@ IO，网络，数据库，复杂计算（如bitmap压缩等）
 ### 参考文献：
 [ANR官方文档][20]
 
-[ANR触发原理（what triggers ANR?][21]
+[ANR触发原理（what triggers ANR?）][21]
 
-[ANR源码流程）][22]
+[ANR源码流程][22]
 
 [最佳实践--性能][23]
 
