@@ -14,6 +14,8 @@ title: Welcome
 
 ## 联系方式
 
-我的邮箱是MichaelBockson@gmail.com
+我的邮箱：MichaelBockson@gmail.com
+
 我的知乎：zhihu.com/people/CoderBao
+
 如果有任何改进意见，欢迎讨论。
