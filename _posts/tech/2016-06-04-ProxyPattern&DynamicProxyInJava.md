@@ -8,6 +8,7 @@ description: 代理模式 动态代理
 
 
 ## 代理模式
+
 ### 定义
 
 
@@ -19,7 +20,9 @@ description: 代理模式 动态代理
 代理类和委托类通常会实现相同的接口，以保证两者能处理相同的消息，在访问者看来两者没有丝毫的区别，是透明的。通过代理类这一中间层，能有效控制对委托类对象的直接访问，也可以很好地隐藏和保护委托类对象，为实施不同的控制策略预留了空间，从而在设计上获得了更大的灵活性。
 
 ### 静态代理
+
 代理类（如下的ProxySubject类）是在编译时就实现好的。
+
 ```java
 package com.coderbao.reflection;
 
@@ -27,6 +30,7 @@ public interface Subject {
 	void doSomething();
 }
 ```
+
 ```java
 package com.coderbao.reflection;
 
@@ -57,10 +61,9 @@ public class ProxySubject implements Subject{
 		System.out.println("PostProcess the message");
 		
 	}
-
 }
-
 ```
+
 ```java
 package com.coderbao.reflection;
 
@@ -71,11 +74,16 @@ public class DynamicProxyDemo {
 	}
 }
 ```
+
 Output:
+
 ```
 PreProcess the message
+
 RealSubject doSomething()
+
 PostProcess the message
+
 ```
 
 ### 生活中的代理模式
@@ -85,7 +93,9 @@ PostProcess the message
 
 ## Java中的动态代理机制
     在运行时创建接口的实现（create dynamic implementations of interfaces at runtime）
+	
 ### 相关的API
+
 #### java.lang.reflect.Proxy
 - static InvocationHandler getInvocationHandler(Object proxy) ：获得代理对象对应的调用处理器对象
 - static Class getProxyClass(ClassLoader loader, Class[] interfaces) ：根据类加载器和接口创建代理类
@@ -101,6 +111,7 @@ PostProcess the message
 
 
 ### 使用方式
+
 ```
 // Step1、实现InvocationHandler接口创建自定义处理器
 InvocationHandler handler = new InvocationHandler() {
@@ -126,17 +137,25 @@ Subject proxy = (Subject) Proxy.newProxyInstance(
 		handler);
 proxy.doSomething();
 ```
+
 Output:
+
 ```
 PreProcess the message
+
 RealSubject doSomething()
+
 RealSubject doSomething()
+
 PostProcess the message
 ```
 
 ### 源码实现
+
 #### 动态类的实例生成
+
 Proxy 的重要静态变量
+
 ```java
    /** maps a class loader to the proxy class cache for that loader 
    * 映射表：用于维护类加载器对象到其对应的代理类缓存
@@ -167,14 +186,18 @@ Proxy 的重要静态变量
      */
     protected InvocationHandler h;
 ```
+
 Proxy的带参构造函数
+
 ```
     protected Proxy(InvocationHandler h) {
         doNewInstanceCheck();
         this.h = h;
     }
 ```
+
 Proxy的静态方法newProxyInstance,生成动态代理类的实例
+
 ```java
     public static Object newProxyInstance(ClassLoader loader,
                                           Class<?>[] interfaces,
@@ -211,9 +234,12 @@ Proxy的静态方法newProxyInstance,生成动态代理类的实例
     }
 
 ```
+
 #### 动态类的代码生成
+
 getProxyClass0(loader, interfaces)方法调用ProxyGenerator的 generateProxyClass方法生成代理类的代码
-```
+
+```java
     private static Class<?> getProxyClass0(ClassLoader loader,
                                            Class<?>... interfaces) {
         //确定代理类的名字，为包名+$ProxyN，N为0，1，2，3，...                                   
@@ -235,8 +261,10 @@ getProxyClass0(loader, interfaces)方法调用ProxyGenerator的 generateProxyCla
 		}
 	｝	
 ```
+
 sun.misc.ProxyGenerator为我们代劳了写些套路化的代码（OpenJDK源码下载点[这里][3]，导入需要的ProxyGenerator.Java文件）
-```
+
+```java
     public static byte[] generateProxyClass(final String name,Class<?>[] interfaces) {
         return generateProxyClass(name, interfaces, (ACC_PUBLIC | ACC_FINAL | ACC_SUPER));
     }
@@ -271,10 +299,13 @@ sun.misc.ProxyGenerator为我们代劳了写些套路化的代码（OpenJDK源�
        return classFile;  
    }  
 ```
+
 #### 获取动态类的字节码
+
 我们导入sun.misc.ProxyGenerator.java后，调用generateProxyClass可以生成动态类的字节码，并将其保存到硬盘上。
 这里可以自定义生成类的名字为DynamicProxyType。
-```
+
+```java
 package com.coderbao.reflection;
 
 import java.io.FileOutputStream;
@@ -316,15 +347,13 @@ public class DynamicProxyDemo {
 	public static void main(String[] args) {
         //在F盘根目录下生成了Proxy1.class，拖到AndroidStudio中反编译即可
 		ProxyGeneratorUtils.writeProxyClassToDisk("F:/DynamicProxyType.class");  
-	}
-	
-	
+	}	
 }
-
 ```
-#### 生成的动态类的代码
-```java
 
+#### 生成的动态类的代码
+
+```java
 import com.coderbao.reflection.Subject;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -402,25 +431,37 @@ public final class DynamicProxyType extends Proxy implements Subject {
 #### 
 
 ### 动态代理的性能消耗和利弊
+
 #### 性能消耗
+
 原因： There is probably some performance cost because of dispatching methods reflectively instead of using the built-in virtual method dispatch（使用反射来分发方法）
+
 [Debunking myths: proxies impact performance ][4]（50倍）
+
 [Java theory and practice: Decorating with dynamic proxies][5]（less than a factor of two）
+
 [Benchmarking the cost of dynamic proxies][6]（factor of 1.63 in raw use）
+
 总结：
+
 - 如果被代理的对象要执行重量级的耗时操作（数据库或文件读写或事务管理），那么动态代理增加的性能消耗可以忽略
 - 如果的确需要优化性能，可使用字节码生成工具（a byte code weaving approach），如AspectJ
 - 动态代理的操作次数不宜过多
 
 #### 不足
+
 从设计上看动态代理类要继承Proxy类，而Java中没有多继承，所以只能对接口创建动态代理类，不能代理抽象类。此外，还有一些历史遗留的类，它们将因为没有实现任何接口而从此与动态代理永世无缘。
 
 ####优点
+
 可以充当接口的Decorator或Proxy，减少书写重复代码
 
 ### 实际用途
+
 #### Database Connection and Transaction Management（数据库的连接与事务管理）
+
 Spring 框架中有一个事务代理可以让你提交/回滚一个事务。它的具体原理在 [Advanced Connection and Transaction Demarcation and Propagation][7] 一文中有详细描述，，方法调用序列的大意如下：
+
 ```
   web controller --> proxy.execute(...);
   proxy --> connection.setAutoCommit(false);
@@ -428,12 +469,17 @@ Spring 框架中有一个事务代理可以让你提交/回滚一个事务。它
   realAction does database work
   proxy --> connection.commit();
 ```
+
 #### Dynamic Mock Objects for Unit Testing（单元测试中的动态Mock对象）
+
 [Butterfly Testing工具][8]利用动态代理来实现dynamic stub，mock 和代理类，从而进行单元测试。在测试类A的时候，如果类A用到了类B（B实际上是接口），你可以传一个B 接口的 mock 实现给 A ，来代替实际的 B 接口实现。所有对接口B的方法调用都会被记录，你可以自己设置 B 的 mock 中方法的返回值。 
 而且 Butterfly Testing 工具允许你在 B 的 mock 中包装真实的 B 接口实现，这样所有调用 mock 的方法都会被记录，然后把调用转发到真实的 B 接口实现。这样你就可以检查B中方法真实功能的调用情况。例如：你在测试 DAO 时你可以把真实的数据库连接包装到 mock 中。DAO 可以如常地在数据库中读写数据，因为mock 会把所有对数据库的调用都转发给数据库，你可以通过 mock 来检查 DAO 是不是以正确的方式来使用数据库连接，比如是否调用了 `connection.close()`方法,这种情况不能通过DAO 方法的返回值来判断。
+
 ####  Adaptation of DI Container to Custom Factory Interfaces（依赖注入容器到自定义工厂接口的适配器）
+
 依赖注入容器 [Butterfly Container][9] 有个强大的特性可以让你把整个容器注入到这个容器生成的 bean 中。但是，如果你不想依赖这个容器接口，这个容器可以按你需要地把自己适配成一个自定义的工厂接口。你只需要写接口，不必实现它。这样这个工厂接口和你的类看起来就像这样：
-```
+
+```java
 public interface IMyFactory {
   Bean   bean1();
   Person person();
@@ -455,15 +501,19 @@ public class MyAction{
 
 }
 ```
+
 当 MyAction 类调用通过容器注入到构造方法中的 IMyFactory 实例的方法时，这个方法调用实际先调用了 IContainer.instance()方法，这个方法可以让你从容器中获取实例。这样这个对象可以把 Butterfly Container 容器在运行期当成一个工厂使用，比起在创建这个类的时候进行注入，这种方式显然更好。而且这种方法没有依赖到 Butterfly Container 中的任何接口。
 
 ####  AOP-like Method Interception（AOP中的方法拦截）
+
 如果某个bean实现了某些接口，那么Spring 框架就能拦截对bean 的方法调用。Spring 框架使用动态代理来包装 bean，所有对 bean 中方法的调用都会被代理拦截。代理可以决定是否要调用其他对象的方法来做预处理/拦截/后续处理。
 
 ####  Retrofit中自定义的网络请求到OkHttp.Call的适配
+
 使用`GitHub github = retrofit.create(GitHub.class);`时；我们就创建了一个我们自定义的接口GitHub的动态代理类，当我们发出消息时（调用github.contributors().execute()时），代理类会按照Retrofit先前配置的逻辑来处理我们发出的消息：比如交由okhttp3.Call来进行网络请求。Retrofit完成的是封装客户网络请求的高效工作，而真正的网络请求的工作是委托给了OkHttp来完成。
 
 [Sample][10]
+
 ```java
 package com.example.retrofit;
 
@@ -516,7 +566,9 @@ public final class SimpleService {
   }
 }
 ```
+
 Retrofit.create
+
 ```java
 public final class Retrofit {
       public <T> T create(final Class<T> service) {
@@ -544,9 +596,13 @@ public final class Retrofit {
 ```
 
 ## References
+
 [Java Reflection - Dynamic Proxies][11]（一个不错的的Java知识点学习网站）
+
 [Java 动态代理机制分析及扩展，第 1 部分][12]（IBM啊）
+
 [Java动态代理机制详解（JDK 和CGLIB，Javassist，ASM）][13]
+
 [retrofit][14]
 
 
