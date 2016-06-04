@@ -196,6 +196,7 @@ description: ADB命令大全
 2. 获取序列号
 
         adb get-serialno
+        
 ### dumpsys
     adb shell dumpsys   //获取系统状态
     adb shell dumpsys | grep "DUMP OF SERVICE"  //获取与关键字相关的状态
