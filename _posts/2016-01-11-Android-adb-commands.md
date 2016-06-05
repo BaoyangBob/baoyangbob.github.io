@@ -1,11 +1,13 @@
 ---
 layout: post
 title: ADB命令大全
+category: 技术
 date:   2016-01-11 23:10:28
 catalog:  true
 tags:
-	- ADB
-
+    - ADB
+category: 技术
+description: ADB
 ---
 
 
