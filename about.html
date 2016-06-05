@@ -1,0 +1,130 @@
+---
+layout: page
+title: "About"
+description: "Hey, this is CoderBao."
+header-img: "img/about-bg.jpg"
+---
+
+<!-- Language Selector -->
+<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select>
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <blockquote><p>技术、工作以及生活<br>
+    十年磨一剑。<br>
+	天生我材必有用。<br>
+	惟江上之清风，与山间之明月，耳得之而为声，目遇之而成色。取之无禁，用之不竭，是造物者之无尽藏也，而吾与子之所共适也。<br>
+	</p></blockquote>
+
+    <h5>个人简介</h5>
+    <p>Hi，我是<strong>CoderBao</strong>，软件工程师。<br>
+我对技术的追求是成为优秀的软件工程师：以App开发中遇到的问题作为切入点，上下求索，将知识的网络辐射到软件开发中的各个方面。</p>
+    <h5>Something</h5>
+
+
+	<p><a href="mailto:michaelbockson@gmail.com?subject=Hello%20again">michaelbockson@gmail.com</a></p>
+	   
+    <p><a href="https://github.com/baoyangbob">Github</a></p>
+	   
+	<p><a href="https://www.shanbay.com/bdc/review/progress/38031496">扇贝</a></p>
+			  
+	<p><a href="zhihu.com/people/CoderBao">知乎</a></p>
+	   
+
+    
+    <h5>网站历史</h5>
+    <ul>
+    	<li>2016.1.17, 搭建个人博客；</li>
+    	<li>2016.6.5, 申请并迁移至域名http://coderbao.com；</li>
+
+    </ul>
+
+    <h5>版本声明</h5>
+    
+    <ul>
+	    <li>本站所有博文内容均为原创，欢迎交流与转载，转载请务必注明作者<a target="_blank" href="http://weibo.com/gityuan">Gityuan</a>与<strong>原文链接</strong>(注：是链接而非文字描述)，且不得轻易篡改原文内容。</li>
+			<li>另外，未经授权不得用于任何商业目的。</li>
+		</ul>
+
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+
+
+
+{% if site.duoshuo_username %}
+<!-- 多说评论框 start -->
+<div class="comment">
+    <div class="ds-thread"
+    {% if site.duoshuo_username == "huxblog" %}
+        data-thread-id="1187623191091085319"
+    {% else %}
+        data-thread-key="{{site.duoshuo_username}}/about"
+    {% endif %}
+
+    data-title="{{page.title}}"
+    data-url="{{site.url}}/about/"></div>
+</div>
+<!-- 多说评论框 end -->
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User hacking by Hux
+    var _user = '{{site.duoshuo_username}}';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+{% endif %}

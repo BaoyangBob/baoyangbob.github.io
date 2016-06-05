@@ -1,33 +1,110 @@
-permalink: /:year/:month/:day/:title.html
+# Site settings
+title: CoderBao Blog
+SEOTitle: 鲍阳的博客 | CoderBao Blog
+header-img: img/home-bg.jpg
+email: michaelbockson@gmail.com
+description: "Android,CoderBao,Android技术博客  | 这里是 CoderBao鲍阳 的个人博客，与你一起发现更大的世界。"
+keyword: "鲍阳, CoderBao鲍阳, CoderBao, 鲍阳的博客, CoderBao Blog, 博客, 个人网站, 移动开发, Android开发"
+url: "coderbao.com"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+
+
+
+# SNS settings
+RSS: true
+#weibo_username:     
+zhihu_username:     coderbao
+github_username:    baoyangbob
+#twitter_username:  coderbao
+#facebook_username:  coderbao
+# linkedin_username:  firstname-lastname-idxxxx
+
+
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
-pygments: true
-
 kramdown:
-  input: GFM
+  input: GFM                            # use Github Flavored Markdown !important
 
-# 作者信息
-author: 
-  name: 鲍阳
-  email: michaelbockson@gmail.com
-  link: http://baoyangbob.github.io/
-# weibo: http://weibo.com/yansu0711
-  github: http://github.com/BaoyangBob
 
-# 站点信息
-title: 鲍阳的博客 
-description: 鲍阳的博客
-url: http://baoyangbob.github.io/
-rss_url: /pages/atom.xml
 
-# avatar头像及Favicon
-avatar: http://img.my.csdn.net/uploads/201601/10/1452435996_9050.png
-favicon: http://img.my.csdn.net/uploads/201601/10/1452435996_9050.png
+# Disqus settings
+#disqus_username: httpbaoyangbobgithubio
 
-# google analytics 设置
-# ga:
-#   id: UA-54767140-1
-#   url: yansu.org
+# Duoshuo settings
+duoshuo_username: coderbao
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
-# disqus 设置
-disqus:
-  shortname: httpbaoyangbobgithubio
+
+
+
+# Analytics settings
+# Baidu Analytics
+# ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+# Google Analytics
+# ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+# ga_domain: coderbao.com
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "Android Developer"
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+# hotpages
+hotpages: [
+		{
+        title: "代理模式和Java中的动态代理机制",
+        href:  "http://coderbao.com/2016/06/04/ProxyPattern&DynamicProxyInJava.html"
+    }, {
+        title: "ADB命令大全",
+        href:  "http://coderbao.com/2016/01/11/Android-adb-commands.html"
+    }
+]
+
+# Friends
+friends: [
+    {
+        title: "Gityuan（系统源码分析）",
+        href: "http://gityuan.com/"
+    },{
+        title: "老罗的Android之旅（系统源码分析）",
+        href: "http://blog.csdn.net/luoshengyang/"
+    },{
+        title: "掘金（资讯，大浪淘沙，沙里淘金）",
+        href: "gold.xitu.io"
+    }
+]
+
+#money settings
+
+#money-alipay: /images/about-me/alipay.jpg
+#money-weixin: /images/about-me/weixin.jpg
+#money-description: 如果觉得我的文章对您所有帮助，请随意打赏，或者分享转发给更多朋友。您的支持与认可，将使我更加坚持不懈地创作，谢谢您！
