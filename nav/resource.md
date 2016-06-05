@@ -1,8 +1,8 @@
 ---
 layout: page-nav
-title: Resource
+title: 资源分享
 permalink: /resource/
-description: "资源分享专区"
+description: ""
 header-img: "img/nav-resource.jpg"
 ---
 
