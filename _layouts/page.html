@@ -207,6 +207,26 @@ layout: default
                     {% endfor %}
                 </ul>
                 {% endif %}
+				
+				                
+                <!-- 标签 -->
+                {% if site.featured-tags %}
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a target="_blank" href="{{'/tags/' | prepend: site.baseurl }}">标签</a></h5>
+                    <div class="tags">
+                        {% for tag in site.tags %}
+                            {% if tag[1].size > {{site.featured-condition-size}} %}
+                                <a target="_blank" href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+				
+				
                 <!--Begin Last Visitor -->
                 <hr>
                 <h5>最近访客</h5>
