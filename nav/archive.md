@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Archive
+permalink: /archive/
 header-img: "img/home-bg5.jpg"
 description: "足迹"
 ---

@@ -5,8 +5,7 @@ date:   2016-01-11 23:10:28
 catalog:  true
 tags:
 	- ADB
-description: ADB命令大全
-category: 技术
+
 ---
 
 
