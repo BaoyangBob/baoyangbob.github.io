@@ -3,11 +3,10 @@ layout: post
 title: ADB命令大全
 date:   2016-01-11 23:10:28
 catalog:  true
-category: 技术
 tags:
 	- ADB
 description: ADB命令大全
-
+category: 技术
 ---
 
 
