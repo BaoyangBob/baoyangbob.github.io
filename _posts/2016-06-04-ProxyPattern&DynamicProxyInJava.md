@@ -15,7 +15,7 @@ description: 代理模式 动态代理
 为实际对象提供一个代理，以控制对实际对象的访问。代理类负责为委托类预处理消息，过滤消息并转发消息，以及进行消息被委托类执行后的后续处理。（by [IBM developerworks][1]）
 
 ### 代理模式的UML图
-![DelegatePattern.png-18.3kB][2]
+![ProxyPattern][images/design-pattern/ProxyPattern.png]
 
 代理类和委托类通常会实现相同的接口，以保证两者能处理相同的消息，在访问者看来两者没有丝毫的区别，是透明的。通过代理类这一中间层，能有效控制对委托类对象的直接访问，也可以很好地隐藏和保护委托类对象，为实施不同的控制策略预留了空间，从而在设计上获得了更大的灵活性。
 
@@ -607,7 +607,6 @@ public final class Retrofit {
 
 
   [1]: http://www.ibm.com/developerworks/cn/java/j-lo-proxy1/
-  [2]: http://static.zybuluo.com/Jacoburg/xd2t2dqf6wnn53ifo0fipu0v/DelegatePattern.png
   [3]: http://download.java.net/openjdk/jdk8/
   [4]: http://blog.springsource.com/2007/07/19/debunking-myths-proxies-impact-performance/
   [5]: http://www.ibm.com/developerworks/java/library/j-jtp08305.html

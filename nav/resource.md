@@ -3,7 +3,7 @@ layout: page-nav
 title: 资源分享
 permalink: /resource/
 description: ""
-header-img: "img/nav-resource.jpg"
+header-img: "img/home-bg2.jpg"
 ---
 
 > 优秀资源分享区，正在建设中...
