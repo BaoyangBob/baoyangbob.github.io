@@ -2,8 +2,13 @@
 layout: post
 title: ANR学习笔记
 category: 技术
-
-keywords: anr
+date:   2015-03-26 23:35:28
+catalog:  true
+tags:
+    - ANR
+    - 性能优化
+category: 技术
+description: ANR 性能优化
 ---
 
 

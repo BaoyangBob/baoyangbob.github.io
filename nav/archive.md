@@ -1,8 +1,9 @@
 ---
 layout: page
 title: archive
-permalink: /archive/
+permalink: /Archive/
 header-img: "img/home-bg5.jpg"
+description: "×ã¼£"
 ---
 
 ### Blogs

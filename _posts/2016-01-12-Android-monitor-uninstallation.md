@@ -1,8 +1,13 @@
 ---
 layout: post
 title: 应用卸载后的操作
+date:   2015-01-12 22:30:22
+catalog:  true
+tags:
+    - JNI
+    - 应用卸载
 category: 技术
-keywords: 卸载,进程,jni
+description: 应用卸载 JNI
 ---
 
 

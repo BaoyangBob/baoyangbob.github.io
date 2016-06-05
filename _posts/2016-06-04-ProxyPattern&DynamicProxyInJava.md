@@ -1,9 +1,14 @@
 ---
 layout: post
 title: 代理模式和Java中的动态代理机制
+date:   2016-06-04 22:10:10
+catalog:  true
+tags:
+    - 动态代理
+    - 设计模式
 category: 技术
-tags: Java
 description: 代理模式 动态代理
+
 ---
 
 

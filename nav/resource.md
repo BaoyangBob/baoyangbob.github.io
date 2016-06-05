@@ -1,6 +1,6 @@
 ---
 layout: page-nav
-title: 资源分享
+title: 干货分享区
 permalink: /resource/
 description: ""
 header-img: "img/home-bg2.jpg"
