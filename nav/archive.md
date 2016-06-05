@@ -1,6 +1,6 @@
 ---
 layout: page
-title: archive
+title: Archive
 permalink: /Archive/
 header-img: "img/home-bg5.jpg"
 description: "×ã¼£"
