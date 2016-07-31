@@ -1,8 +1,11 @@
 ---
 layout: post
 title: Dagger2使用指南
-category: 技术
-tags: Java
+date:   2016-08-01 02:10:10
+catalog:  true
+tags:
+    - 依赖注入
+    - Dagger
 description: 依赖注入 Dagger
 ---
 
