@@ -14,6 +14,7 @@ description: ADB
 查看ADB帮助`adb help`
 
 ### 设备连接
+
 1. 等待设备连接，在模拟器/设备连接之前把命令暂存在adb的命令器中
 
         adb wait-for-device 
@@ -35,6 +36,7 @@ description: ADB
         Ctrl-C
 
 ### 设备管理
+
 3. 重启设备
 
         adb reboot
@@ -53,18 +55,19 @@ description: ADB
         -s <serialNumber> 发送命令到指定设备
 
 ### APP管理
+
 1. 获取apk的packagename 和 classname
 
         aapt d badging <apkfile>
-4. 安装APK
+2. 安装APK
 
         adb install <apk>
         adb install test.apk
-5. 重新安装apk，但保存数据和缓存文件
+3. 重新安装apk，但保存数据和缓存文件
 
         adb install -r <apk>
         apk install -r test.apk
-6. 安装apk到sd卡
+4. 安装apk到sd卡
 
         adb install -s <apk>
         adb install -s test.apk
@@ -76,18 +79,19 @@ description: ADB
 
         adb uninstall -k <package>
         adb uninstall -k com.bob.test
-4. 启动应用(**Meizu Note2测试  -n  失败**)
+7. 启动应用(**Meizu Note2测试  -n  失败**)
 
         adb shell am start -n <package_name>/.<activity_class_name>
-1. 杀死Activity
+8. 杀死Activity
 
         adb shell am force-stop <package name>    
     
-### 查看内存占用       
-4. 查看设备cpu和内存占用情况
+### 查看内存占用    
+   
+1. 查看设备cpu和内存占用情况
 
         adb shell top
-5. 刷新一次内存信息后返回,`-n`：刷新次数
+2. 刷新一次内存信息后返回,`-n`：刷新次数
 
         adb shell top -n 1
 3. 查看占用cpu前6的进程,`-m`：前几个
@@ -97,10 +101,10 @@ description: ADB
 
         adb shell top -t
         adb shell top -t -m 6
-1. 查询各进程内存使用情况(**Meizu Note2测试 失败**)
+5. 查询各进程内存使用情况(**Meizu Note2测试 失败**)
 
         adb shell procrank
-1. 杀死一个进程
+6. 杀死一个进程
 
         adb shell kill <pid>
         就算手机已经root了，手机上的adbd server也拿不到root权限，命令不起作用。
@@ -109,33 +113,42 @@ description: ADB
         adb shell "su -c 'kill $(pidof <package name>)'"
         或者
         adb shell "su -c 'kill <pid>'"
-2. 查看进程列表
+7. 查看进程列表
 
         adb shell ps
-2. 查看指定进程状态
+8. 查看指定进程状态
 
         adb shell ps -x <pid>
-2. 查看后台service列表
+		
+8. 查看指定进程中的线程
+
+        adb shell ps <pid> -t 
+9. 查看后台service列表
 
         adb shell service list
 
 ### Log相关
-6. 查看log
+
+1. 查看log
     
         adb logcat
         adb logcat 标签:级别 *:S
         adb logcat ActivityManager:I
-5. 清除log缓存
+2. 清除log缓存
 
         adb logcat -c
-5. 查看bug报告
+3. 查看bug报告
 
         adb bugreport
-3. monkey测试,500次操作
+4. monkey测试,500次操作
 
         adb shell monkey -v -p <package name> 500 
+5. 记录logcat并保存到d盘下
+
+		adb shell logcat >D:/log.txt
        
 ### 文件操作相关
+
 2. 挂载为可读写
 
         adb remount
@@ -176,6 +189,7 @@ description: ADB
         adb shell mkdir path/<dir>
 
 ### 查看状态信息
+
 3. 查看文件内容
 
         adb shell cat <file>
@@ -202,6 +216,7 @@ description: ADB
         adb get-serialno
         
 ### dumpsys
+
     adb shell dumpsys   //获取系统状态
     adb shell dumpsys | grep "DUMP OF SERVICE"  //获取与关键字相关的状态
     adb shell dumpsys activity  //获取所有关于四大组件的信息（包括布局）,这里及之后的Activity不是指界面Activity，而是泛指Android里的四大组件。

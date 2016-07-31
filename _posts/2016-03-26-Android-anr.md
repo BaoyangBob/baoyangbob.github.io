@@ -13,6 +13,7 @@ description: ANR 性能优化
 
 
 ### ANR
+
 Android系统为了防止某些应用会在一段时间内反应迟钝，因而弹出的ANR对话框。
 ### ANR触发条件
 - 5秒内未响应input event,包括key和touch两种事件
@@ -21,9 +22,11 @@ Android系统为了防止某些应用会在一段时间内反应迟钝，因而�
 
 
 ### 需要注意ANR的场景
+
 IO，网络，数据库，复杂计算（如bitmap压缩等）
 
 ### 避免ANR的方法：在UI线程外的worker thread做耗时操作。
+
 - 简单任务->[`AsyncTask`][2]
 - 复杂任务->[`HandlerThread`][3]或[`Thread`][4]，一定要设置线程优先级为[`THREAD_PRIORITY_BACKGROUND`][5]，调用的是[`Process.setThreadPriority()`][6]，不然该线程的优先级为默认，和UI线程相同，仍然会影响App速度。
 - 不要使用`Thread.wait()`或`Thread.sleep()`阻塞主线程
@@ -32,6 +35,7 @@ IO，网络，数据库，复杂计算（如bitmap压缩等）
 
 
 ### 改善响应速度的方法
+
  - [ProgressBar][9]
  - worker thread中计算
  - 如果是应用启动耗时长，展示splash screen或尽快渲染出main view，同时显示进度
@@ -69,6 +73,7 @@ IO，网络，数据库，复杂计算（如bitmap压缩等）
 
 
 ### 参考文献：
+
 [ANR官方文档][20]
 
 [ANR触发原理（what triggers ANR?）][21]
