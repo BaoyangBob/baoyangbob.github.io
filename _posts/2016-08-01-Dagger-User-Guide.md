@@ -351,7 +351,10 @@ class CoffeeFilter {
 
 #### 延迟注入（Lazy injections）
 
-有时，我们需要一个延迟到使用时才初始化的对象。对于任意的 binding 类 `T`，我们可以创建 [Lazy<T>](http://google.github.io/dagger/api/latest/dagger/Lazy.html)对象，它会把实例化延迟到第一次调用`Lazy<T>.get()`方法的时候。如果`T`是 singleton提供方式，那么在对象图中的注入的所有 `Lazy<T>` 都是同一个实例。如果`T`不是 singleton，每个注入`Lazy<T>`的点，都是不同的实例。
+有时，我们需要一个延迟到使用时才初始化的对象。
+对于任意的 binding 类 `T`，我们可以创建 `Lazy<T>`对象，它会把实例化延迟到第一次调用`Lazy<T>.get()`方法的时候。
+如果`T`是 singleton提供方式，那么在对象图中的注入的所有 `Lazy<T>` 都是同一个实例；
+如果`T`不是 singleton，每个注入`Lazy<T>`的点，都是不同的实例。
 
 ```java
 //带研磨功能的咖啡机
