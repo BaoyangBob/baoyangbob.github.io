@@ -13,6 +13,7 @@ description: 依赖注入 Dagger
 ## Dagger2使用指南
 
 本文基于个人对[Dagger官方说明文档][1]的翻译，加上个人理解整理而成。
+
 转载请注明出处：http://coderbao.com/2016/08/01/Dagger-User-Guide/
 
 ### 引言
@@ -148,14 +149,14 @@ class PumpModule {
 另一种是members-injection（成员注入方法），参数为需求依赖的类型T的对象,**此方法调用则依赖被注入给对象T**，例如：
 
 ```java
-   void injectSomeType(SomeType someType);
-   SomeType injectAndReturnSomeType(SomeType someType);
+void injectSomeType(SomeType someType);
+SomeType injectAndReturnSomeType(SomeType someType);
 ```
 
 component中调用`getSomeTypeMembersInjector()`再`MembersInjector.injectMembers(T)`等价于`injectT(T)`，会完成相同的注入工作。
 
 ```java
-   MembersInjector<SomeType> getSomeTypeMembersInjector();
+MembersInjector<SomeType> getSomeTypeMembersInjector();
 ```
 
 
@@ -198,6 +199,7 @@ class Foo {
 - 如果component的所有依赖都不需要用户手动创建实例（指没有component依赖，而且所有的module都有可见的无参构造器），那么生成的实现类会多出一个`create()`方法，该方法等价于`.builder().build()`方法，也可以创建component实现类的实例。
 
 例如：
+
 ```java
 public static void main(String[] args) {
     OtherComponent otherComponent = ...;
@@ -217,7 +219,7 @@ public static void main(String[] args) {
 CoffeeShop coffeeShop = DaggerCoffeeShop.create();
 ```
 
-现在，我们的`CoffeeApp`可以很方便地使用Dagger生成的实现类CoffeeShop来获得已注入好依赖的`CoffeeMaker`实例。
+现在，我们的`CoffeeApp`可以很方便地使用Dagger生成的实现类`CoffeeShop`来获得已注入好依赖的`CoffeeMaker`实例。
 
 ```java
 public class CoffeeApp {
@@ -349,7 +351,7 @@ class CoffeeFilter {
 
 #### 延迟注入（Lazy injections）
 
-有时，我们需要一个延迟到使用时才初始化的对象。对于任意的 binding 类 `T`，我们可以创建 [Lazy<T>][19] 对象，它会把实例化延迟到第一次调用 `Lazy<T>.get()` 方法的时候。如果`T`是 singleton提供方式，那么在对象图中的注入的所有`Lazy<T>`都是同一个实例。如果`T`不是 singleton，每个注入`Lazy<T>`的点，都是不同的实例。
+有时，我们需要一个延迟到使用时才初始化的对象。对于任意的 binding 类 `T`，我们可以创建 [Lazy<T>](http://google.github.io/dagger/api/latest/dagger/Lazy.html)对象，它会把实例化延迟到第一次调用`Lazy<T>.get()`方法的时候。如果`T`是 singleton提供方式，那么在对象图中的注入的所有 `Lazy<T>` 都是同一个实例。如果`T`不是 singleton，每个注入`Lazy<T>`的点，都是不同的实例。
 
 ```java
 //带研磨功能的咖啡机
@@ -530,4 +532,3 @@ dependencies {
   [16]: http://docs.oracle.com/javaee/7/api/javax/inject/Singleton.html
   [17]: http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Documented.html
   [18]: http://google.github.io/dagger/api/latest/dagger/Reusable.html
-  [19]: http://google.github.io/dagger/api/latest/dagger/Lazy.html
