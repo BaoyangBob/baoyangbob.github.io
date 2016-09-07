@@ -1,10 +1,12 @@
-﻿---
+---
 layout: post
 title: 理解 Java 中的四种引用
 category: 技术
 tags: Java
+catalog:  true
 description: 引用
 ---
+
 
 
 

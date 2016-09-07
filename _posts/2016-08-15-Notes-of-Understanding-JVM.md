@@ -3,6 +3,7 @@ layout: post
 title: 《深入理解Java 虚拟机》读书笔记
 category: 技术
 tags: Java
+catalog:  true
 description: 读书笔记
 ---
 
@@ -191,6 +192,7 @@ reference中存储的是对象地址，对象实例数据中放置访问类型�
 一个Object的大小计算方法:
 一个引用4byte+空Object本身8byte+其它数据类型占据自身大小byte(例如char占用2byte);
 然而由于系统分配以8byte为单位，所以每个Object占据的大小必须为8的倍数，比如一个空的Object应该占据4+8=12，也就是说需要占据16byte
+
 |基本数据类型 |   大小(byte)|
 |:-:|:-:|
 |byte/boolean|1|
