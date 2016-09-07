@@ -259,6 +259,26 @@ $ java -cp ... coffee.CoffeeApp
    }
 ```
 
+- 在Android环境中，经常要用Application实例、Activity实例来作为依赖，因此ApplicationModule、ActivityModule
+需要向图中提供Application实例、Activity实例，但这类实例并非由我们初始化得来，所以我们需要首先用Module的有参构造器来获取到Application实例、Activity实例，再用 provision-methods向对象图暴露依赖。
+
+```java
+@Module
+public class ApplicationModule {
+  public ApplicationModule(Application application) {
+    this.application = application;
+  }
+
+  /**
+   * 向对象图暴露application
+   */
+  @Provides @Singleton Application application() {
+    return application;
+  }
+}
+```
+
+
 #### 图中的粘合器（binding）
 
 上面的例子展示了如何用一些典型的Binding来构建component，但将binding提供给图的方式有很多，接下来这些都可以当作依赖、构成component：
@@ -473,12 +493,17 @@ Dagger 的注解处理器可能会生成像````的源文件，这些文件是Dag
 
 在应用的运行时引入`dagger-2.2.jar`，在编译时引入`dagger-compiler-2.2.jar`。具体操作如下：
 
+首先必须配置android-apt插件，它允许使用注解处理器而不将其插入到最后的apk文件中，还配置由该处理器所产生的源代码的路径。
 build.gradle （项目的根目录中）
 
 ```
-dependencies {
+buildscript {
+	...
+	
+	dependencies {
         ...
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+	}
 }
 ```
 
