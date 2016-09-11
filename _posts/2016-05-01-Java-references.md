@@ -241,10 +241,17 @@ class A {
 ### 推荐阅读
 
 《深入理解Java虚拟机》CH2,CH3
+
 《ThinkingInJava》CH2,CH3
+
+[《深入理解Java 虚拟机》读书笔记][15]
+
 [Java Weak Reference][11]
+
 [Java References: From Strong to Soft to Weak to Phantom][12]
+
 [Java Reference Objects][13]
+
 [Garbage Collection，Chapter 9 of Inside the Java Virtual Machine][14]
 
 
@@ -262,3 +269,4 @@ class A {
   [12]: https://www.rallydev.com/blog/engineering/java-references-strong-soft-weak-phantom
   [13]: http://www.kdgregory.com/index.php?page=java.refobj
   [14]: http://www.artima.com/insidejvm/ed2/gcP.html
+  [15]: http://coderbao.com/2016/08/15/Notes-of-Understanding-JVM/
