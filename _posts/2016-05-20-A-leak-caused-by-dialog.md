@@ -17,7 +17,7 @@ description: 读书笔记
 
 主旨：在Lollipop之前的版本，Dialog可能导致内存泄漏。
 
-### 引言
+## 引言
 
 LeakCanary 提示存在内存泄漏：
 
@@ -74,7 +74,7 @@ private static class DispatcherHandler extends Handler {
 
 看来问题来自于Handler 和 Thread 的工作机制中。
 
-### Handler+Thread 工作原理
+## Handler+Thread 工作原理
 
 HandlerThread也是内部封装了Handler的Thread，让我们看看它的工作原理：
 
@@ -121,7 +121,7 @@ void recycleUnchecked() {
 ```
 
 
-### 模拟消息队列
+## 模拟消息队列
 
 ```java
 static class MyMessage {
@@ -198,7 +198,7 @@ static void loop(BlockingQueue<MyMessage> queue) throws InterruptedException {
 
 这种内存泄漏可以在各种 Thread 和 queue 的实现上复现，因此问题出在虚拟机的bug上，且该问题只能在 Dalvik VM 上复现，无法在 ART VM 或 JVM 上复现。
 
-### AlertDialog
+## AlertDialog
 
 我们一般是这样创建alert dialog：
 
@@ -339,7 +339,7 @@ private final View.OnClickListener mButtonHandler = new View.OnClickListener() {
 };
 ```
 
-### Handler+Thread遇上AlertDialog时
+## Handler+Thread遇上AlertDialog时
 
 首先发送一个消息给 HandlerThread，让消息被消费和回收到消息池中，并且不再向该线程发送消息以确保上一条消息被泄漏。
 然后，我们在主线程中展示一个带按钮的dialog，我们很有可能获取到同一个消息对象。因为，消息一旦被回收，就会被放到消息池的最前面。因此，HandlerThread 中的局部变量msg就辗转获得了Activity的引用。
@@ -377,13 +377,13 @@ backgroundhandler.post(new Runnable() {//1，获取一个消息并向HandlerThre
 4. 在Activity发生GC时Dialog和原型实例会GC，但是局部变量msg所在的线程A可能并未结束，存在引用链Worker Thread--Looper--局部变量msg--匿名内部类DialogInterface.OnClickListener--Activity一直存在，所以这个activity会泄漏。
 
 
-### 修复措施
+## 修复措施
 
 - Dalvik VM 才有该问题，Android 5.0以上使用的是 ART VM，ART VM 和 JVM 不存在此问题。
 - 给Dialog设置 OnShowListener、OnDismissListener、OnCancelListener、OnClickListener等时，都要注意此问题。
 - 使用LeakCanary检测内存泄漏，默认不检测本泄漏，要想检测可以看[这里][3]。
 
-#### App级的修复
+### App级的修复
 
 1. static修饰listener的实现类，静态内部类不持有外部类的引用。
 2. 在dialog的窗口被移除时清除指向listener的引用。这种方案适合在编码阶段进行修改。
@@ -435,7 +435,7 @@ clickListener.clearOnDetach(dialog);//监听窗口解除事件，手动释放引
 dialog.show();
 ```
 
-#### 适合框架或维护性质代码的修复
+### 适合框架或维护性质代码的修复
 
 向消息队列注册MessageQueue.IdleHandler接口，该回调接口会在线程即将阻塞、等待新消息之前被调用（详见android.os.MessageQueue.next()）。我们可以在HandlerThread空闲时发送空消息，确保没有泄漏很久的Message对象，就算泄漏很久了，Message对象也不会持有其他的大对象。
 
@@ -455,7 +455,8 @@ static void flushStackLocalLeaks(Looper looper) {
 }
 ```
 
-参考资料：
+## 参考资料：
+
 [A small leak will sink a great ship][4]
 [Android 内存泄漏总结][5]
 [Android中导致内存泄漏的竟然是它----Dialog][6]

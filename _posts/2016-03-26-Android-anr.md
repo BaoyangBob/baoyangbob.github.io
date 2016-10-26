@@ -2,7 +2,7 @@
 layout: post
 title: ANR学习笔记
 category: 技术
-date:   2015-03-26 23:35:28
+date:   2016-03-26 23:35:28
 catalog:  true
 tags:
     - ANR
