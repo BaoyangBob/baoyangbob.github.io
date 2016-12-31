@@ -1,10 +1,15 @@
 ---
 layout: post
 title: 2016年度总结
-tags: Java
+category: 技术
+date:   2016-12-31 18:10:00
 catalog:  true
-description:年度总结 
+tags:
+- 年度总结
+category: 年度总结
+description: 年度总结
 ---
+
 
 2016年，是我转行成为一名程序员后的第一个年头。这一年，经历过很多次的反思，相比较于2014年初入社会时的学生气，我的精神面貌上有了很大的变化。
 
