@@ -43,7 +43,7 @@ description: 读书笔记
 
 ### 运行时数据区域
 
-![JVM运行时数据区域](../images/jvm/jvm-runtime-data-partition.png)
+![JVM运行时数据区域](/images/jvm/jvm-runtime-data-partition.png)
 
 #### 程序计数器
 
@@ -154,12 +154,12 @@ HotSpot虚拟机的**对象头**包括两部分：
 
 reference中存储的是对象地址，对象实例数据中放置访问类型数据的相关信息。
 
-![](../images/jvm/access-object-by-handler.jpg)
+![](/images/jvm/access-object-by-handler.jpg)
 
 
 通过句柄访问对象
 
-![](../images/jvm/access-object-by-direct-pointer.jpg)
+![](/images/jvm/access-object-by-direct-pointer.jpg)
 
 
 通过直接指针访问对象
@@ -287,7 +287,7 @@ Exact Memory Management,也可以叫 Non-Conservative/Accurate Memory Management
 
 类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）、卸载（Unloading）7个阶段。其中验证、准备、解析3部分统称为连接（Linking）。
 
-![类的生命周期](../images/jvm/class-lifetime.jpg)
+![类的生命周期](/images/jvm/class-lifetime.jpg)
 
 
 
@@ -338,7 +338,7 @@ public static final int value=123;//在准备阶段value赋值为123
 
 
 
-![基本数据类型的初始值](../images/jvm/primitive-type-default-value.jpg)
+![基本数据类型的初始值](/images/jvm/primitive-type-default-value.jpg)
 
 
 
@@ -354,13 +354,13 @@ public static final int value=123;//在准备阶段value赋值为123
 
 
 
-是根据程序员通过程序指定的主观计划去**初始化类变量和其他资源**，也就是**执行类构造器<clinit>()方法**的过程。
+是根据程序员通过程序指定的主观计划去**初始化类变量和其他资源**，也就是**执行类构造器`<clinit>`()方法**的过程。
 
-<clinit>()方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块中的语句合并产生的。
+`<clinit>`方法是由编译器自动收集类中的所有类变量的赋值动作和静态语句块中的语句合并产生的。
 
-<clinit>方法与类的构造函数（即实例构造器<init>方法）不是同一个概念。
+`<clinit>`方法与类的构造函数（即实例构造器<init>方法）不是同一个概念。
 
-<clinit>方法在多线程环境下也只会执行一次，在同一个类加载器下，一个类型只会初始化一次。
+`<clinit>`方法在多线程环境下也只会执行一次，在同一个类加载器下，一个类型只会初始化一次。
 
 
 
@@ -433,7 +433,7 @@ if(同一个Class文件 && 被同一个虚拟机加载 && 被同一个类加载�
 
 
 
-![stack-frame-struct](../images/jvm/stack-frame.jpg)
+![stack-frame-struct](/images/jvm/stack-frame.jpg)
 
 
 
@@ -491,7 +491,7 @@ java内存模型(JMM)是线程间通信的控制机制.JMM定义了主内存和�
 
 
 
-![java memory model](../images/jvm/java-memory-model.png)
+![java memory model](/images/jvm/java-memory-model.png)
 
 
 
