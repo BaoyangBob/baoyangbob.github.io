@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Dagger2使用指南
+title: Dagger2使用指南（译）
 date:   2016-08-01 02:10:10
 catalog:  true
 tags:
@@ -10,7 +10,7 @@ description: 依赖注入 Dagger
 ---
 
 
-## Dagger2使用指南
+## Dagger2使用指南（译）
 
 本文基于个人对[Dagger官方说明文档][1]的翻译，加上个人理解整理而成。
 
@@ -260,7 +260,7 @@ $ java -cp ... coffee.CoffeeApp
 ```
 
 - 在Android环境中，经常要用Application实例、Activity实例来作为依赖，因此ApplicationModule、ActivityModule
-需要向图中提供Application实例、Activity实例，但这类实例并非由我们初始化得来，所以我们需要首先用Module的有参构造器来获取到Application实例、Activity实例，再用 provision-methods向对象图暴露依赖。
+  需要向图中提供Application实例、Activity实例，但这类实例并非由我们初始化得来，所以我们需要首先用Module的有参构造器来获取到Application实例、Activity实例，再用 provision-methods向对象图暴露依赖。
 
 ```java
 @Module
@@ -296,7 +296,7 @@ public class ApplicationModule {
 - 上面提及的bindings的 `Provider` 或 `Lazy` 包装类
 
 - 上面提及的bindings的 `Lazy` 、`Provider`
-嵌套的包装类（如`Provider<Lazy<CoffeeMaker>>`）
+  嵌套的包装类（如`Provider<Lazy<CoffeeMaker>>`）
 
 - 任意类型的 `MembersInjector` 
 
@@ -542,21 +542,21 @@ dependencies {
 
 版权声明：本文为博主原创文章，未经博主允许不得转载。
 
-  [1]: http://google.github.io/dagger/users-guide.html
-  [2]: http://en.wikipedia.org/wiki/Dependency_injection
-  [3]: http://docs.oracle.com/javaee/7/api/javax/inject/package-summary.html
-  [4]: https://jcp.org/en/jsr/detail?id=330
-  [5]: http://en.wikipedia.org/wiki/Dependency_injection
-  [6]: https://google.com/+GregoryKick/
-  [7]: https://www.youtube.com/watch?v=oK_XtfXPkqw&feature=youtu.be
-  [8]: https://github.com/google/dagger/tree/master/examples/simple/src/main/java/coffee
-  [9]: http://google.github.io/dagger/api/latest/dagger/Provides.html
-  [10]: http://google.github.io/dagger/api/latest/dagger/Module.html
-  [11]: http://developer.android.com/reference/android/app/Application.html
-  [12]: http://google.github.io/dagger/api/latest/dagger/Component.html#dependencies%28%29
-  [13]: http://google.github.io/dagger/api/latest/dagger/Component.html#provision-methods
-  [14]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.html
-  [15]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.Builder.html
-  [16]: http://docs.oracle.com/javaee/7/api/javax/inject/Singleton.html
-  [17]: http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Documented.html
-  [18]: http://google.github.io/dagger/api/latest/dagger/Reusable.html
+[1]: http://google.github.io/dagger/users-guide.html
+[2]: http://en.wikipedia.org/wiki/Dependency_injection
+[3]: http://docs.oracle.com/javaee/7/api/javax/inject/package-summary.html
+[4]: https://jcp.org/en/jsr/detail?id=330
+[5]: http://en.wikipedia.org/wiki/Dependency_injection
+[6]: https://google.com/+GregoryKick/
+[7]: https://www.youtube.com/watch?v=oK_XtfXPkqw&amp;feature=youtu.be
+[8]: https://github.com/google/dagger/tree/master/examples/simple/src/main/java/coffee
+[9]: http://google.github.io/dagger/api/latest/dagger/Provides.html
+[10]: http://google.github.io/dagger/api/latest/dagger/Module.html
+[11]: http://developer.android.com/reference/android/app/Application.html
+[12]: http://google.github.io/dagger/api/latest/dagger/Component.html#dependencies%28%29
+[13]: http://google.github.io/dagger/api/latest/dagger/Component.html#provision-methods
+[14]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.html
+[15]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.Builder.html
+[16]: http://docs.oracle.com/javaee/7/api/javax/inject/Singleton.html
+[17]: http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Documented.html
+[18]: http://google.github.io/dagger/api/latest/dagger/Reusable.html
